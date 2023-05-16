@@ -29,6 +29,10 @@ extension Activity : Identifiable {
     @NSManaged public var actualFinish: Int32
     @NSManaged public var predecessors: [Int32]?
     @NSManaged public var successors: [Int32]?
+    @NSManaged public var weatherEffectPrecipitation: Bool
+    @NSManaged public var weatherEffectTemperature: Bool
+    @NSManaged public var weatherEffectWind: Bool
+    
 }
 
 

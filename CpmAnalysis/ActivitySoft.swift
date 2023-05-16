@@ -24,18 +24,27 @@ class ActivitySoft {
     
     public var actualStart: Int32 = 0
     public var actualFinish: Int32 = 0
+    
+    public var weatherEffectPrecipitation: Bool = false
+    public var weatherEffectTemperature: Bool = false
+    public var weatherEffectWind: Bool = false
+    
 //    public var remainingDuration: Int32 = 0
     
     
-    init (id: Int32, description: String, duration: Int32, predecessors: [Int32], sucessors: [Int32]) {
+    init (id: Int32, description: String, duration: Int32, predecessors: [Int32], sucessors: [Int32], weatherEffectPrecipitation: Bool, weatherEffectTemperature: Bool, weatherEffectWind: Bool) {
         self.id = id
         self.description = description
         self.duration = duration
         self.predecessors = predecessors
         self.sucessors = sucessors
+        self.weatherEffectPrecipitation = weatherEffectPrecipitation
+        self.weatherEffectTemperature = weatherEffectTemperature
+        self.weatherEffectWind = weatherEffectWind
+        
     }
 
-    init (id: Int32, description: String, duration: Int32, predecessors: [Int32], sucessors: [Int32], actualStart: Int32, actualFinish: Int32) {
+    init (id: Int32, description: String, duration: Int32, predecessors: [Int32], sucessors: [Int32], actualStart: Int32, actualFinish: Int32,weatherEffectPrecipitation: Bool, weatherEffectTemperature: Bool, weatherEffectWind: Bool) {
         self.id = id
         self.description = description
         self.duration = duration
@@ -43,6 +52,9 @@ class ActivitySoft {
         self.sucessors = sucessors
         self.actualStart = actualStart
         self.actualFinish = actualFinish
+        self.weatherEffectPrecipitation = weatherEffectPrecipitation
+        self.weatherEffectTemperature = weatherEffectTemperature
+        self.weatherEffectWind = weatherEffectWind
     }
     
     public func setEarlyTime(earlyStart: Int32, earlyFinish: Int32) {

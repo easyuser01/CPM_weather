@@ -35,7 +35,7 @@ class CpmViewModel: ObservableObject {
             project.schedules.removeAll()
             var initialSchedule = [ActivitySoft]()
             for activity in savedActivities {
-                initialSchedule.append(ActivitySoft(id: activity.id, description: activity.name ?? "", duration: activity.duration, predecessors: activity.predecessors ?? [], sucessors: activity.successors ?? []))
+                initialSchedule.append(ActivitySoft(id: activity.id, description: activity.name ?? "", duration: activity.duration, predecessors: activity.predecessors ?? [], sucessors: activity.successors ?? [], weatherEffectPrecipitation: activity.weatherEffectPrecipitation,weatherEffectTemperature: activity.weatherEffectTemperature, weatherEffectWind: activity.weatherEffectWind))
             }
             project.schedules.append(Schedule(schedule: initialSchedule))
             
@@ -48,13 +48,19 @@ class CpmViewModel: ObservableObject {
                      name: String,
                      duration: Int32,
                      predecessors: [Int32],
-                     successors: [Int32]) {
+                     successors: [Int32],
+                     weatherEffectPrecipitation: Bool,
+                     weatherEffectTemperature: Bool,
+                     weatherEffectWind: Bool){
         let newActivity = Activity(context: container.viewContext)
         newActivity.id = id
         newActivity.name = name
         newActivity.duration = duration
         newActivity.predecessors = predecessors
         newActivity.successors = successors
+        newActivity.weatherEffectPrecipitation = weatherEffectPrecipitation
+        newActivity.weatherEffectTemperature = weatherEffectTemperature
+        newActivity.weatherEffectWind = weatherEffectWind
         saveData()
     }
     

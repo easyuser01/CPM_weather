@@ -18,9 +18,23 @@ struct ContentView: View {
     @State var durationText: String = ""
     @State var predecessorsText: String = ""
     @State var successorsText: String = ""
+    @State var weatherEffectPrecipitation: Bool = false
+    @State var weatherEffectWind: Bool = false
+    @State var weatherEffectTemperature: Bool = false
+    
+    
+    var weatherEffectSection: some View {
+            VStack {
+                Toggle("Precipitation", isOn: $weatherEffectPrecipitation)
+                Toggle("Wind", isOn: $weatherEffectWind)
+                Toggle("Temperature", isOn: $weatherEffectTemperature)
+            }
+        }
     
     var body: some View {
         NavigationView {
+            
+            
             VStack(spacing: 20) {
                 startDateTextSection
                 idTextSection
@@ -28,12 +42,19 @@ struct ContentView: View {
                 durationTextSection
                 predecessorsTextSection
                 successorsTextSection
+                weatherEffectSection
+                
+                
                 
                 HStack {
                     
                     Button {
                         var tempPredecessors : [Int32] = []
                         var tempSuccessors : [Int32] = []
+                        var tempweatherEffectPrecipitation : Bool = false
+                        var tempweatherEffectTemperature : Bool = false
+                        var tempweatherEffectWind : Bool = false
+                        
                         
                         guard !idText.isEmpty,
                               !durationText.isEmpty else {return}
@@ -65,12 +86,19 @@ struct ContentView: View {
                                 temp.duration = Int32(durationText) ?? 0
                                 temp.predecessors = tempPredecessors
                                 temp.successors = tempSuccessors
+                                temp.weatherEffectPrecipitation = tempweatherEffectPrecipitation
+                                temp.weatherEffectTemperature = tempweatherEffectTemperature
+                                temp.weatherEffectWind = tempweatherEffectWind
                             } else {
                                 vm.addActivity(id: Int32(idText) ?? 0,
                                                name: nameText,
                                                duration: Int32(durationText) ?? 0,
                                                predecessors: tempPredecessors,
-                                               successors: tempSuccessors)
+                                               successors: tempSuccessors,
+                                               weatherEffectPrecipitation: tempweatherEffectPrecipitation,
+                                               weatherEffectTemperature: tempweatherEffectTemperature,
+                                               weatherEffectWind: tempweatherEffectWind)
+                                
                             }
                         }
                         
